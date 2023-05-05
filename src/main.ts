@@ -1,7 +1,10 @@
 import generateLLMChain from "./generateLLMChain.js";
 import { setup } from "./setup.js";
 import * as dotenv from "dotenv";
-import { generateObjective } from "./generateObjective.js";
+import generateObjective from "./generateObjective.js";
+import generatePrompt from "./generatePrompt.js";
+import tasks from "./tasks.js";
+import { runChain } from "./runChain.js";
 
 dotenv.config();
 
@@ -10,10 +13,19 @@ async function main() {
 
   const llmChain = generateLLMChain(options);
 
-  const response = await generateObjective(options, llmChain);
+  for (const taskKey in tasks) {
+    const task = tasks[taskKey];
+    console.log(task.description);
+    let taskPrompt;
+    if (taskKey === "objective") {
+      taskPrompt = await generateObjective(options);
+    } else {
+      taskPrompt = await generatePrompt(task);
+    }
+    console.log(taskPrompt);
 
-  console.log(response);
-  // Repeat
+    await runChain(llmChain, taskPrompt);
+  }
 }
 
 await main();

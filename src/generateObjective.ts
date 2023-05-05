@@ -1,40 +1,17 @@
-import { PromptTemplate } from "langchain/prompts";
 import tasks from "./tasks.js";
 import { SetupOptions } from "./setup.js";
-import { LLMChain } from "langchain/chains";
+import generatePrompt from "./generatePrompt.js";
 
-export async function generateObjective(
-  options: SetupOptions,
-  llmChain: LLMChain
-) {
+export default async function generateObjective(options: SetupOptions) {
   console.debug("Generating objective...");
-  const instructionsPrompt = new PromptTemplate({
-    template: tasks.objective.instructions,
-    inputVariables: ["language", "uiFramework"],
-  });
 
-  const instructionsValue = await instructionsPrompt.formatPromptValue({
+  const taskPrompt = await generatePrompt(tasks["objective"], {
     language: options.language,
     uiFramework: options.uiFramework,
+    objective: options.objective,
   });
 
-  const taskPrompt = new PromptTemplate({
-    template: tasks.objective.tasks,
-    inputVariables: ["language", "objective"],
-  });
+  //console.debug("Task prompt: ", taskPrompt);
 
-  const taskValue = await taskPrompt.formatPromptValue({
-    language: options.language,
-    objective: options.appObjective,
-  });
-
-  llmChain.inputKeys;
-  const response = await llmChain.call({
-    instructions: instructionsValue,
-    tasks: taskValue,
-  });
-
-  console.debug("Objective generated: ", response);
-
-  return response;
+  return taskPrompt;
 }

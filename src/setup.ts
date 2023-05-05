@@ -1,7 +1,7 @@
 import { input, select } from "@inquirer/prompts";
 
 export interface SetupOptions {
-  appObjective: string;
+  objective: string;
   language: "typescript" | "python";
   uiFramework: "React" | "Streamlit";
   packageManager: "npm" | "yarn" | null;
@@ -11,13 +11,15 @@ export interface SetupOptions {
 
 export async function setup() {
   console.debug("Running setup...");
-  const appObjective = await input({
-    message:
-      "Welcome to the Daedalus-CodeAI!\n\n" +
-      "Provide a concise description of the app you want to build.\n" +
-      "You will be able to review each step of the code generation process.\n\n" +
-      "Please provide a concise description of the app you want to build:",
-  });
+  const appObjective = process.env.OBJECTIVE
+    ? process.env.OBJECTIVE
+    : await input({
+        message:
+          "Welcome to the Daedalus-CodeAI!\n\n" +
+          "Provide a concise description of the app you want to build.\n" +
+          "You will be able to review each step of the code generation process.\n\n" +
+          "Please provide a concise description of the app you want to build:",
+      });
 
   const languageChoice = process.env.CODE_LANGUAGE
     ? process.env.CODE_LANGUAGE
@@ -100,12 +102,12 @@ export async function setup() {
       });
 
   const options: SetupOptions = {
-    appObjective: appObjective,
+    objective: appObjective,
     language: languageChoice as "typescript" | "python",
     uiFramework: languageChoice === "typescript" ? "React" : "Streamlit",
     packageManager: packageManager as "npm" | "yarn" | null,
     verbose: verbose === "true",
-    model: model as "gpt-4" | "gpt-3.5-turbo",
+    model: model as gpt-4" | "gpt-3.5-turbo",
   };
 
   console.debug("Setup complete!");
