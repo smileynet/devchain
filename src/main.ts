@@ -1,13 +1,18 @@
-import generateLLMChain from "./llmchain.js";
+import generateLLMChain from "./generateLLMChain.js";
 import { setup } from "./setup.js";
+import * as dotenv from "dotenv";
+import { generateObjective } from "./generateObjective.js";
+
+dotenv.config();
 
 async function main() {
   const options = await setup();
-  console.debug(options);
 
   const llmChain = generateLLMChain(options);
-  // Confirm
 
+  const response = await generateObjective(options, llmChain);
+
+  console.log(response);
   // Repeat
 }
 
