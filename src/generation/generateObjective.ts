@@ -1,11 +1,11 @@
-import tasks from "./tasks.js";
+import tasksAppDev from "../apps/appDev/tasksAppDev.js";
 import { SetupOptions } from "./setup.js";
 import generatePrompt from "./generatePrompt.js";
 
 export default async function generateObjective(options: SetupOptions) {
   console.debug("Generating objective...");
 
-  const taskPrompt = await generatePrompt(tasks["objective"], {
+  const taskPrompt = await generatePrompt(tasksAppDev["objective"], {
     language: options.language,
     uiFramework: options.uiFramework,
     objective: options.objective,

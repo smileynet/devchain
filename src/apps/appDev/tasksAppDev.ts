@@ -7,7 +7,7 @@ export interface Task {
   maxTokens: number;
 }
 
-const tasks: Record<string, Task> = {
+const tasksAppDev: Record<string, Task> = {
   objective: {
     description: "Objective",
     taskVariables: ["language", "uiFramework", "objective"],
@@ -43,19 +43,19 @@ Present the code flow in an ordered list.`,
     description: "App Outline",
     task: `Referencing the app name, description, architecture, UX flow
 and code flow  previously discussed, complete the task below.
-Write a list of files, classes, and methos to be completed later.
+Write a list of files, classes, and methods to be completed later.
 Provide comments for each item for use in future generations.
 The output should be in JSON format.`,
     maxTokens: 2000,
   },
 };
 
-export default tasks;
+export default tasksAppDev;
 
 /**
  Write the Python code for the app in a single python file.\n
  Use SQLite for data storage .\n
- Exclude environment setup, testing, debugging, and deployment tasks.\n
+ Exclude environment setup, testing, debugging, and deployment tasksAppDev.\n
  Build sample datasets with at least five items.\n
  Follow these coding guidelines:
  - Check and create database tables first in the main function.\n

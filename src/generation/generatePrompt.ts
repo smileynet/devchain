@@ -1,4 +1,4 @@
-import { Task } from "./tasks.js";
+import { Task } from "../apps/appDev/tasksAppDev.js";
 import { PromptTemplate } from "langchain/prompts";
 
 export default async function generatePrompt(

@@ -1,20 +1,20 @@
-import { setup } from "./setup.js";
-import generateLLMChain from "./generateLLMChain.js";
-import tasks from "./tasks.js";
+import { setup } from "../../generation/setup.js";
+import generateLLMChain from "../../generation/generateLLMChain.js";
+import tasksAppDev from "./tasksAppDev.js";
 import chalk from "chalk";
-import generateObjective from "./generateObjective.js";
-import generatePrompt from "./generatePrompt.js";
+import generateObjective from "../../generation/generateObjective.js";
+import generatePrompt from "../../generation/generatePrompt.js";
 import { StringPromptValue } from "langchain/prompts";
-import { runChain } from "./runChain.js";
-import { writeOutputToFile } from "./writeToFile.js";
+import { runChain } from "../../generation/runChain.js";
+import { writeOutputToFile } from "../../output/writeToFile.js";
 
 export async function runDevChain() {
   const options = await setup();
 
   const llmChain = generateLLMChain(options);
 
-  for (const taskKey in tasks) {
-    const task = tasks[taskKey];
+  for (const taskKey in tasksAppDev) {
+    const task = tasksAppDev[taskKey];
     console.log(chalk.blue("\nCurrent task: "), task.description);
     let taskPrompt;
     if (taskKey === "objective") {
