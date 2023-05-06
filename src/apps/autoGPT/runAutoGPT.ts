@@ -1,15 +1,15 @@
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { AutoGPT } from "langchain/experimental/autogpt";
-import { NodeFileStore } from "langchain/stores/file/node";
 import { ReadFileTool, SerpAPI, WriteFileTool } from "langchain/tools";
 import { HNSWLib } from "langchain/vectorstores";
+import { nodestore } from "../../config/stores.js";
 
 export default async function runAutoGPT(
-  prompt = "Write a weather report for Seattle, Washington."
+  prompt = "Write a weather report for Seattle, Washington.",
+  iterations = 5
 ) {
-  const store = new NodeFileStore();
-
+  const store = nodestore;
   const tools = [
     new ReadFileTool({ store }),
     new WriteFileTool({ store }),
@@ -32,6 +32,7 @@ export default async function runAutoGPT(
       memory: vectorStore.asRetriever(),
       aiName: "PipBoy",
       aiRole: "Assistant",
+      maxIterations: iterations,
     }
   );
 

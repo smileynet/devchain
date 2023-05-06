@@ -37,7 +37,7 @@ async function main() {
   });
 
   let iterations;
-  if (methodSelection == "babyagi") {
+  if (methodSelection === "babyagi" || methodSelection === "autogpt") {
     iterations = await input({
       message: "How many iterations would you like to run?",
       default: "5",
@@ -50,7 +50,7 @@ async function main() {
       await runBabyAGI(prompt, iterations);
       break;
     case "autogpt":
-      await runAutoGPT(prompt);
+      await runAutoGPT(prompt, iterations);
       break;
     case "devchain":
       await runDevChain(prompt);

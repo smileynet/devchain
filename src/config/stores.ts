@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { NodeFileStore } from "langchain/stores/file/node";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 
 dotenv.config();
@@ -17,4 +18,8 @@ export const vectorstore = new MemoryVectorStore(
       },
     }
   )
+);
+
+export const nodestore = new NodeFileStore(
+  process.env.OUTPUT_PATH || "./output"
 );
