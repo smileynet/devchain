@@ -1,17 +1,13 @@
 import * as dotenv from "dotenv";
-import path from "path";
-import runRetrievalQA from "./apps/summarization/runRetrievalQA.js";
-import loadText from "./input/loadText.js";
+import stateOfTheUnion from "./examples/stateOfTheUnion.js";
 
 dotenv.config();
 
 async function main() {
-  const filePath = path.join("src/samples/", `state_of_the_union.txt`);
-  const docs = await loadText(filePath);
+  await stateOfTheUnion();
   //const filePath = path.join("src/samples/", `game_programming_patterns.json`);
   //const pointers = ["/text"];
   //const docs = await loadJSON(filePath, pointers);
-  await runRetrievalQA(docs);
   return;
   /*
   const prompt = await input({

@@ -4,12 +4,9 @@ import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { ada } from "../../config/embeddings.js";
 import { davinci } from "../../config/llm.js";
 
-export default async function runRetrievalQA(docs: Document[]) {
-  // Create a vector store from the documents.
+export default async function runRetrievalQA(docs: Document[], prompt: string) {
   const vectorStore = await HNSWLib.fromDocuments(docs, ada);
   const model = davinci;
-
-  // Create a chain that uses the OpenAI LLM and HNSWLib vector store.
   let chain;
   const custom = true;
   if (custom) {
@@ -22,7 +19,7 @@ export default async function runRetrievalQA(docs: Document[]) {
   }
 
   const res = await chain.call({
-    query: "What did the president say about Justice Breyer?",
+    query: prompt,
   });
   console.log({ res });
 }
