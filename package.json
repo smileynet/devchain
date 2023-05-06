@@ -17,12 +17,14 @@
   "dependencies": {
     "@inquirer/prompts": "^1.0.1",
     "dotenv": "^16.0.3",
+    "js-yaml": "^4.1.0",
     "langchain": "^0.0.69",
     "openai": "^3.2.1",
     "serpapi": "^1.1.1"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.16.3",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",

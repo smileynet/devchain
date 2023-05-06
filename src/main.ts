@@ -1,10 +1,11 @@
+import * as dotenv from "dotenv";
+import { runChain } from "./runChain.js";
+import generatePrompt from "./generatePrompt.js";
+import generateObjective from "./generateObjective.js";
+import tasks from "./tasks.js";
 import generateLLMChain from "./generateLLMChain.js";
 import { setup } from "./setup.js";
-import * as dotenv from "dotenv";
-import generateObjective from "./generateObjective.js";
-import generatePrompt from "./generatePrompt.js";
-import tasks from "./tasks.js";
-import { runChain } from "./runChain.js";
+import { StringPromptValue } from "langchain/prompts";
 
 dotenv.config();
 
@@ -15,16 +16,18 @@ async function main() {
 
   for (const taskKey in tasks) {
     const task = tasks[taskKey];
-    console.log(task.description);
+    console.log("\nCurrent task: ", task.description);
     let taskPrompt;
     if (taskKey === "objective") {
       taskPrompt = await generateObjective(options);
     } else {
       taskPrompt = await generatePrompt(task);
     }
-    console.log(taskPrompt);
+    const taskValue = taskPrompt as StringPromptValue;
+    console.debug("Task Prompt\n", taskValue.value);
 
-    await runChain(llmChain, taskPrompt);
+    const result = await runChain(llmChain, taskPrompt);
+    console.log("Result:\n", result.text);
   }
 }
 

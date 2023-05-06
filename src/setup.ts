@@ -107,11 +107,11 @@ export async function setup() {
     uiFramework: languageChoice === "typescript" ? "React" : "Streamlit",
     packageManager: packageManager as "npm" | "yarn" | null,
     verbose: verbose === "true",
-    model: model as gpt-4" | "gpt-3.5-turbo",
+    model: model as "gpt-4" | "gpt-3.5-turbo",
   };
 
   console.debug("Setup complete!");
-  console.debug(options);
+  //console.debug(options);
 
   return options;
 }

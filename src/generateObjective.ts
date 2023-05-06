@@ -11,7 +11,8 @@ export default async function generateObjective(options: SetupOptions) {
     objective: options.objective,
   });
 
-  //console.debug("Task prompt: ", taskPrompt);
+  if (process.env.VERBOSE_DEBUG)
+    console.debug("Generate task prompt: ", taskPrompt);
 
   return taskPrompt;
 }

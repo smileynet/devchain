@@ -26,28 +26,28 @@ Present the application architecture in an ordered list.`,
   },
   ux_flow: {
     description: "UX Flow",
-    instructions: `Referencing the app name, description and architecture
-    previously discussed, complete the task below`,
-    task: `Create a concise UX flow that you can use to build code flow.\\n
-              Present the UX flow an ordered list.`,
+    task: `Referencing the app name, description and architecture previously discussed, complete the task below
+Create a concise UX flow that you can use to build code flow.
+Present the UX flow an ordered list.`,
     maxTokens: 700,
   },
   code_flow: {
     description: "Code Flow",
-    instructions: `Referencing the app name, description, architecture
-    and UX flow previously discussed, complete the task below.`,
-    task: `Create a concise code flow you can use to write code.\\n
-              Outline the code components and structure.\\n
-              Present the code flow in an ordered list.`,
-    maxTokens: 70,
+    task: `Referencing the app name, description, architecture and UX flow previously discussed, complete the task below.
+Create a concise code flow you can use to write code.
+Outline the code components and structure.
+Present the code flow in an ordered list.`,
+    maxTokens: 700,
   },
   app_code: {
-    description: "App Code",
-    instructions: `Referencing the app name, description, architecture, UX flow
-    and code flow  previously discussed, complete the task below.`,
-    task: `Write the code for the app in a single file`,
-    maxTokens: 500,
-  ,
+    description: "App Outline",
+    task: `Referencing the app name, description, architecture, UX flow
+and code flow  previously discussed, complete the task below.
+Write a list of files, classes, and methos to be completed later.
+Provide comments for each item for use in future generations.
+The output should be in JSON format.`,
+    maxTokens: 2000,
+  },
 };
 
 export default tasks;
