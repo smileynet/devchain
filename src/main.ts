@@ -3,10 +3,14 @@ import * as dotenv from "dotenv";
 import { runDevChain } from "./apps/appDev/runDevChain.js";
 import runAutoGPT from "./apps/autoGPT/runAutoGPT.js";
 import { runBabyAGI } from "./apps/babyAGI/runBabyAGI.js";
+import runRetrievalQA from "./apps/summarization/runRetrievalQA.js";
 
 dotenv.config();
 
 async function main() {
+  await runRetrievalQA();
+  return;
+
   const prompt = await input({
     message:
       "Welcome to DevChain!\n\n" +
