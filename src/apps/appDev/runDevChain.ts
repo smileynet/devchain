@@ -1,15 +1,15 @@
-import { setup } from "../../generation/setup.js";
-import generateLLMChain from "../../generation/generateLLMChain.js";
-import tasksAppDev from "./tasksAppDev.js";
 import chalk from "chalk";
+import { StringPromptValue } from "langchain/prompts";
+import generateLLMChain from "../../generation/generateLLMChain.js";
 import generateObjective from "../../generation/generateObjective.js";
 import generatePrompt from "../../generation/generatePrompt.js";
-import { StringPromptValue } from "langchain/prompts";
 import { runChain } from "../../generation/runChain.js";
 import { writeOutputToFile } from "../../output/writeToFile.js";
+import { setup } from "./setup.js";
+import tasksAppDev from "./tasksAppDev.js";
 
-export async function runDevChain() {
-  const options = await setup();
+export async function runDevChain(prompt = "Create a weather report app.") {
+  const options = await setup(prompt);
 
   const llmChain = generateLLMChain(options);
 

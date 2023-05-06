@@ -9,10 +9,10 @@ export interface SetupOptions {
   model: "gpt-4" | "gpt-3.5-turbo";
 }
 
-export async function setup() {
+export async function setup(prompt?: string) {
   console.debug("Running setup...");
-  const appObjective = process.env.OBJECTIVE
-    ? process.env.OBJECTIVE
+  const appObjective = prompt
+    ? prompt
     : await input({
         message:
           "Welcome to the Daedalus-CodeAI!\n\n" +

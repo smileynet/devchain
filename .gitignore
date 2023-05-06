@@ -1,6 +1,6 @@
 # Custom
-.idea/
-.output/**
+.idea
+output/*
 
 # Logs
 logs

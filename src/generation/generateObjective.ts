@@ -1,5 +1,5 @@
+import { SetupOptions } from "../apps/appDev/setup.js";
 import tasksAppDev from "../apps/appDev/tasksAppDev.js";
-import { SetupOptions } from "./setup.js";
 import generatePrompt from "./generatePrompt.js";
 
 export default async function generateObjective(options: SetupOptions) {

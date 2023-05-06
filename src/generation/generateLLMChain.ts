@@ -1,14 +1,13 @@
+import { LLMChain } from "langchain/chains";
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { BufferMemory } from "langchain/memory";
 import {
   ChatPromptTemplate,
   HumanMessagePromptTemplate,
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { LLMChain } from "langchain/chains";
-
-import { SetupOptions } from "./setup.js";
-import { BufferMemory } from "langchain/memory";
+import { SetupOptions } from "../apps/appDev/setup.js";
 
 export default function generateLLMChain(options: SetupOptions) {
   console.debug("Creating LLMChain instance...");
