@@ -7,6 +7,7 @@ import generateLLMChain from "./generateLLMChain.js";
 import { setup } from "./setup.js";
 import { StringPromptValue } from "langchain/prompts";
 import { writeOutputToFile } from "./writeToFile.js";
+import chalk from "chalk";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ async function main() {
 
   for (const taskKey in tasks) {
     const task = tasks[taskKey];
-    console.log("\nCurrent task: ", task.description);
+    console.log(chalk.blue("\nCurrent task: "), task.description);
     let taskPrompt;
     if (taskKey === "objective") {
       taskPrompt = await generateObjective(options);
@@ -25,10 +26,10 @@ async function main() {
       taskPrompt = await generatePrompt(task);
     }
     const taskValue = taskPrompt as StringPromptValue;
-    console.debug("Task Prompt\n", taskValue.value);
+    console.debug(chalk.cyan("Task Prompt\n"), taskValue.value);
 
     const result = await runChain(llmChain, taskPrompt);
-    console.log("Result:\n", result.text);
+    console.log(chalk.green("Result:\n"), result.text);
 
     // Output the result to a file named after the task
     if (process.env.WRITE_TO_FILE === "true") {
