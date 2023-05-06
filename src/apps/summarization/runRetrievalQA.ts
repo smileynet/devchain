@@ -1,20 +1,13 @@
-import * as fs from "fs";
 import { loadQARefineChain, RetrievalQAChain } from "langchain/chains";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { OpenAI } from "langchain/llms/openai";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { Document } from "langchain/document";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
-import path from "path";
+import { ada } from "../../config/embeddings.js";
+import { davinci } from "../../config/llm.js";
 
-export default async function runRetrievalQA() {
-  const filePath = path.join("src/samples/", `state_of_the_union.txt`);
-  const model = new OpenAI({});
-  const text = fs.readFileSync(filePath, "utf8");
-  const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
-  const docs = await textSplitter.createDocuments([text]);
-
+export default async function runRetrievalQA(docs: Document[]) {
   // Create a vector store from the documents.
-  const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
+  const vectorStore = await HNSWLib.fromDocuments(docs, ada);
+  const model = davinci;
 
   // Create a chain that uses the OpenAI LLM and HNSWLib vector store.
   let chain;

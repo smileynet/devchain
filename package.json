@@ -17,6 +17,7 @@
   "dependencies": {
     "@inquirer/prompts": "^1.0.1",
     "chalk": "^5.2.0",
+    "cheerio": "^1.0.0-rc.12",
     "chromadb": "^1.4.1",
     "dotenv": "^16.0.3",
     "hnswlib-node": "^1.4.2",

@@ -1,16 +1,19 @@
-import { input, select } from "@inquirer/prompts";
 import * as dotenv from "dotenv";
-import { runDevChain } from "./apps/appDev/runDevChain.js";
-import runAutoGPT from "./apps/autoGPT/runAutoGPT.js";
-import { runBabyAGI } from "./apps/babyAGI/runBabyAGI.js";
+import path from "path";
 import runRetrievalQA from "./apps/summarization/runRetrievalQA.js";
+import loadText from "./input/loadText.js";
 
 dotenv.config();
 
 async function main() {
-  await runRetrievalQA();
+  const filePath = path.join("src/samples/", `state_of_the_union.txt`);
+  const docs = await loadText(filePath);
+  //const filePath = path.join("src/samples/", `game_programming_patterns.json`);
+  //const pointers = ["/text"];
+  //const docs = await loadJSON(filePath, pointers);
+  await runRetrievalQA(docs);
   return;
-
+  /*
   const prompt = await input({
     message:
       "Welcome to DevChain!\n\n" +
@@ -60,6 +63,8 @@ async function main() {
       await runDevChain(prompt);
       break;
   }
+
+   */
 }
 
 await main();
