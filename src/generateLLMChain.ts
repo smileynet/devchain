@@ -41,7 +41,7 @@ Here is your current task:
 
   const prompt = ChatPromptTemplate.fromPromptMessages([
     systemMessagePrompt,
-    userMessageProm,
+    userMessagePrompt,
   ]);
 
   if (process.env.VERBOSE_DEBUG) console.debug("Prompt: ", prompt);
