@@ -6,6 +6,7 @@ import tasks from "./tasks.js";
 import generateLLMChain from "./generateLLMChain.js";
 import { setup } from "./setup.js";
 import { StringPromptValue } from "langchain/prompts";
+import { writeOutputToFile } from "./writeToFile.js";
 
 dotenv.config();
 
@@ -28,6 +29,17 @@ async function main() {
 
     const result = await runChain(llmChain, taskPrompt);
     console.log("Result:\n", result.text);
+
+    // Output the result to a file named after the task
+    if (process.env.WRITE_TO_FILE === "true") {
+      const filetype = task.description === "App Outline" ? "json" : "md";
+      await writeOutputToFile(
+        result.text,
+        task.description.toLowerCase().replace(" ", "_"),
+        filetype,
+        options.objective
+      );
+    }
   }
 }
 

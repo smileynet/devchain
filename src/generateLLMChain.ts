@@ -32,7 +32,7 @@ Here is your current task:
 
   const userPromptTemplate = new PromptTemplate({
     inputVariables: ["task", "projectMemory"],
-    template: userTempla,
+    template: userTemplate,
   });
   const userMessagePrompt = new HumanMessagePromptTemplate(userPromptTemplate);
 
