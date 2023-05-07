@@ -1,16 +1,16 @@
 import chalk from "chalk";
 import { loadQARefineChain, RetrievalQAChain } from "langchain/chains";
-import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { davinci, LLMModel } from "../config/llm.js";
+import { VectorStoreType } from "../config/stores.js";
 
 export default async function runRetrievalQA(
-  vectorStore: HNSWLib,
+  vectorStore: VectorStoreType,
   prompt: string,
-  model: LLMModel = davinci
+  model: LLMModel = davinci,
+  refine = true
 ) {
   let chain;
-  const custom = true;
-  if (custom) {
+  if (refine) {
     chain = new RetrievalQAChain({
       combineDocumentsChain: loadQARefineChain(model),
       retriever: vectorStore.asRetriever(),

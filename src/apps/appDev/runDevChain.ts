@@ -4,7 +4,7 @@ import generateLLMChain from "../../generation/generateLLMChain.js";
 import generateObjective from "../../generation/generateObjective.js";
 import generatePrompt from "../../generation/generatePrompt.js";
 import { runChain } from "../../generation/runChain.js";
-import { writeOutputToFile } from "../../output/writeToFile.js";
+import { writeOutputToFile } from "../../utils/writeToFile.js";
 import { setup } from "./setup.js";
 import tasksAppDev from "./tasksAppDev.js";
 

@@ -1,33 +1,37 @@
 import { select } from "@inquirer/prompts";
 import * as dotenv from "dotenv";
 import applications from "./applications.js";
-import { davinci } from "./config/llm.js";
 import examples from "./examples.js";
 import test from "./test.js";
 
 dotenv.config();
 
 async function main() {
-  const testOnly = false;
-  if (testOnly) {
-    await test(davinci);
-    return;
+  let mode;
+  if (process.env.DEFAULT_CHOICE) {
+    mode = process.env.DEFAULT_CHOICE;
+  } else {
+    mode = await select({
+      message: "Which mode would you like to use?",
+      choices: [
+        {
+          name: "Examples",
+          value: "examples",
+          description: "Run examples.",
+        },
+        {
+          name: "Applications",
+          value: "applications",
+          description: "Run applications.",
+        },
+        {
+          name: "Test",
+          value: "test",
+          description: "Run tests.",
+        },
+      ],
+    });
   }
-  const mode = await select({
-    message: "Which mode would you like to use?",
-    choices: [
-      {
-        name: "Examples",
-        value: "examples",
-        description: "Run examples.",
-      },
-      {
-        name: "Applications",
-        value: "applications",
-        description: "Run applications.",
-      },
-    ],
-  });
 
   switch (mode) {
     case "examples":
@@ -35,6 +39,9 @@ async function main() {
       break;
     case "applications":
       await applications();
+      break;
+    case "test":
+      await test();
       break;
   }
 }

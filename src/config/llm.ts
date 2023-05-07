@@ -1,11 +1,12 @@
 import * as dotenv from "dotenv";
 import { ChatOpenAI } from "langchain/chat_models/openai";
-import { OpenAI } from "langchain/llms/openai";
+import { OpenAI, OpenAIChat } from "langchain/llms/openai";
 import { Replicate } from "langchain/llms/replicate";
 
 dotenv.config();
 
 export type LLMModel = OpenAI | Replicate;
+export type ChatLLMModel = OpenAIChat;
 
 const headers = {
   "Helicone-Cache-Enabled": "true",

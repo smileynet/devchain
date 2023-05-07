@@ -3,13 +3,13 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { AutoGPT } from "langchain/experimental/autogpt";
 import { ReadFileTool, SerpAPI, WriteFileTool } from "langchain/tools";
 import { HNSWLib } from "langchain/vectorstores";
-import { nodestore } from "../../config/stores.js";
+import { nodeFileStore } from "../../config/stores.js";
 
 export default async function runAutoGPT(
   prompt = "Write a weather report for Seattle, Washington.",
   iterations = 5
 ) {
-  const store = nodestore;
+  const store = nodeFileStore;
   const tools = [
     new ReadFileTool({ store }),
     new WriteFileTool({ store }),

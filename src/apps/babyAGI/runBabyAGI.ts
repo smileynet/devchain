@@ -5,7 +5,7 @@ import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { ChainTool, SerpAPI, Tool } from "langchain/tools";
 import { gptTurbo } from "../../config/llm.js";
-import { vectorstore } from "../../config/stores.js";
+import { memoryVectorStore } from "../../config/stores.js";
 
 export async function runBabyAGI(
   prompt = "Write a weather report for Seattle, Washington.",
@@ -49,7 +49,7 @@ export async function runBabyAGI(
   const babyAGI = BabyAGI.fromLLM({
     llm: gptTurbo,
     executionChain: agentExecutor, // an agent executor is a chain
-    vectorstore: vectorstore,
+    vectorstore: memoryVectorStore,
     maxIterations: iterations,
   });
 
