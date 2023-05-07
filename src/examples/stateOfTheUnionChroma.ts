@@ -9,7 +9,7 @@ import runSummarization from "../query/runSummarization.js";
 import measurePerformance from "../utils/measurePerformance.js";
 
 // to run this first run chroma's docker-container with `docker-compose up -d --build`
-export default async function stateOfTheUnionCroma() {
+export default async function stateOfTheUnionChroma() {
   console.log(chalk.cyan("Test: ") + "State of the Union w/ Chroma");
   const model = new OpenAI();
   const filePath = path.join("src/samples/", `state_of_the_union.txt`);
