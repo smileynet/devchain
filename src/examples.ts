@@ -1,6 +1,6 @@
 import { select } from "@inquirer/prompts";
-import gameProgrammingPatterns from "./examples/gameProgrammingPatterns.js";
-import stateOfTheUnion from "./examples/stateOfTheUnion.js";
+import stateOfTheUnion from "./examples/stateOfTheUnionHNSW.js";
+import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 
 export default async function examples() {
   const choice = await select({

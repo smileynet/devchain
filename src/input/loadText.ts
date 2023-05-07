@@ -1,4 +1,4 @@
-import { TextLoader } from "langchain/document_loaders";
+import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 export default async function loadText(filePath: string | Blob) {

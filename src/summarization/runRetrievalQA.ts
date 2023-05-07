@@ -1,12 +1,13 @@
+import chalk from "chalk";
 import { loadQARefineChain, RetrievalQAChain } from "langchain/chains";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
-import { davinci } from "../config/llm.js";
+import { davinci, LLMModel } from "../config/llm.js";
 
 export default async function runRetrievalQA(
   vectorStore: HNSWLib,
-  prompt: string
+  prompt: string,
+  model: LLMModel = davinci
 ) {
-  const model = davinci;
   let chain;
   const custom = true;
   if (custom) {
@@ -18,8 +19,13 @@ export default async function runRetrievalQA(
     chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());
   }
 
+  console.log(chalk.green("Prompt: "), prompt);
+
   const res = await chain.call({
     query: prompt,
   });
-  console.log(res.output_text);
+  console.log(
+    chalk.blue("Response: "),
+    res.output_text ? res.output_text : res
+  );
 }

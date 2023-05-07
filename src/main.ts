@@ -1,11 +1,18 @@
 import { select } from "@inquirer/prompts";
 import * as dotenv from "dotenv";
 import applications from "./applications.js";
+import { davinci } from "./config/llm.js";
 import examples from "./examples.js";
+import test from "./test.js";
 
 dotenv.config();
 
 async function main() {
+  const testOnly = true;
+  if (testOnly) {
+    await test(davinci);
+    return;
+  }
   const mode = await select({
     message: "Which mode would you like to use?",
     choices: [
