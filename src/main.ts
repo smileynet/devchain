@@ -1,66 +1,35 @@
+import { select } from "@inquirer/prompts";
 import * as dotenv from "dotenv";
-import stateOfTheUnion from "./examples/stateOfTheUnion.js";
+import applications from "./applications.js";
+import examples from "./examples.js";
 
 dotenv.config();
 
 async function main() {
-  await stateOfTheUnion();
-  //const filePath = path.join("src/samples/", `game_programming_patterns.json`);
-  //const pointers = ["/text"];
-  //const docs = await loadJSON(filePath, pointers);
-  return;
-  /*
-  const prompt = await input({
-    message:
-      "Welcome to DevChain!\n\n" +
-      "You will be select from among different chain methods.\n\n" +
-      "Please provide your prompt:",
-    default: "Write a weather report for Seattle, Washington.",
-  });
-
-  const methodSelection = await select({
-    message: "Which method would you like to use?",
+  const mode = await select({
+    message: "Which mode would you like to use?",
     choices: [
       {
-        name: "BabyAGI",
-        value: "babyagi",
-        description: "BabyAGI LangChain agent for tasks.",
+        name: "Examples",
+        value: "examples",
+        description: "Run examples.",
       },
       {
-        name: "AutoGPT",
-        value: "autogpt",
-        description: "AutoGPT LangChain agent for tasks.",
-      },
-      {
-        name: "DevChain",
-        value: "devchain",
-        description: "DevChain LangChain sequence for creating an application.",
+        name: "Applications",
+        value: "applications",
+        description: "Run applications.",
       },
     ],
   });
 
-  let iterations;
-  if (methodSelection === "babyagi" || methodSelection === "autogpt") {
-    iterations = await input({
-      message: "How many iterations would you like to run?",
-      default: "5",
-    });
-    iterations = parseInt(iterations);
-  }
-
-  switch (methodSelection) {
-    case "babyagi":
-      await runBabyAGI(prompt, iterations);
+  switch (mode) {
+    case "examples":
+      await examples();
       break;
-    case "autogpt":
-      await runAutoGPT(prompt, iterations);
-      break;
-    case "devchain":
-      await runDevChain(prompt);
+    case "applications":
+      await applications();
       break;
   }
-
-   */
 }
 
 await main();

@@ -1,11 +1,11 @@
 import { loadQARefineChain, RetrievalQAChain } from "langchain/chains";
-import { Document } from "langchain/document";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
-import { ada } from "../../config/embeddings.js";
-import { davinci } from "../../config/llm.js";
+import { davinci } from "../config/llm.js";
 
-export default async function runRetrievalQA(docs: Document[], prompt: string) {
-  const vectorStore = await HNSWLib.fromDocuments(docs, ada);
+export default async function runRetrievalQA(
+  vectorStore: HNSWLib,
+  prompt: string
+) {
   const model = davinci;
   let chain;
   const custom = true;
@@ -21,5 +21,5 @@ export default async function runRetrievalQA(docs: Document[], prompt: string) {
   const res = await chain.call({
     query: prompt,
   });
-  console.log({ res });
+  console.log(res.output_text);
 }
