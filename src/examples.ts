@@ -9,12 +9,14 @@ export default async function examples() {
       {
         name: "Game Programming Patterns",
         value: "gameProgrammingPatterns",
-        description: "Run Game Programming Patterns example.",
+        description:
+          "Run queries against JSON scraped version of Game Programming Patterns website.",
       },
       {
         name: "State of the Union",
         value: "stateOfTheUnion",
-        description: "Run State of the Union example.",
+        description:
+          "Run summarization and query against the recent State of the Union.",
       },
     ],
   });
