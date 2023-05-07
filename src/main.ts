@@ -8,7 +8,7 @@ import test from "./test.js";
 dotenv.config();
 
 async function main() {
-  const testOnly = true;
+  const testOnly = false;
   if (testOnly) {
     await test(davinci);
     return;
