@@ -1,12 +1,12 @@
 import chalk from "chalk";
 import { ConversationalRetrievalQAChain } from "langchain/chains";
-import { OpenAI } from "langchain/llms/openai";
+import { ChatLLMModel } from "../config/llm.js";
 import { VectorStoreType } from "../config/stores.js";
 
 export async function runConversationalRetrievalQA(
   vectorStore: VectorStoreType,
   prompt: string,
-  model: OpenAI
+  model: ChatLLMModel
 ) {
   const chain = ConversationalRetrievalQAChain.fromLLM(
     model,
@@ -14,6 +14,6 @@ export async function runConversationalRetrievalQA(
   );
   console.log(chalk.blue("Prompt"), prompt);
   console.log(chalk.green("Response: "));
-  const res = await chain.call({ prompt, chat_history: [] });
-  console.log(res);
+  const res = await chain.call({ question: prompt, chat_history: [] });
+  console.log(res.text ? res.text : res);
 }

@@ -2,7 +2,7 @@ import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { AutoGPT } from "langchain/experimental/autogpt";
 import { ReadFileTool, SerpAPI, WriteFileTool } from "langchain/tools";
-import { HNSWLib } from "langchain/vectorstores";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { nodeFileStore } from "../../config/stores.js";
 
 export default async function runAutoGPT(

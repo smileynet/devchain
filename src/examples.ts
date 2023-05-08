@@ -1,4 +1,5 @@
 import { select } from "@inquirer/prompts";
+import stateOfTheUnionChat from "./examples/stateOfTheUnionChat.js";
 import stateOfTheUnion from "./examples/stateOfTheUnionHNSW.js";
 import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 
@@ -18,6 +19,11 @@ export default async function examples() {
         description:
           "Run summarization and query against the recent State of the Union.",
       },
+      {
+        name: "State of the Union with Chat Model",
+        value: "stateOfTheUnion-chat",
+        description: "Run the conversational retrieval QA example version.",
+      },
     ],
   });
 
@@ -27,6 +33,9 @@ export default async function examples() {
       break;
     case "stateOfTheUnion":
       await stateOfTheUnion();
+      break;
+    case "stateOfTheUnion-chat":
+      await stateOfTheUnionChat();
       break;
   }
 }

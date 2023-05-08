@@ -83,8 +83,8 @@ export async function setup(prompt?: string) {
         ],
       });
 
-  const model = process.env.MODEL
-    ? process.env.MODEL
+  const model = process.env.CHAT_MODEL
+    ? process.env.CHAT_MODEL
     : await select({
         message: "Which model would you like to use?",
         choices: [
