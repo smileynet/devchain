@@ -5,10 +5,12 @@ import stateOfTheUnionChroma from "./examples/stateOfTheUnionChroma.js";
 import stateOfTheUnionHNSW from "./examples/stateOfTheUnionHNSW.js";
 import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 import logPerformanceMeasures from "./utils/logPerformanceMeasures.js";
+import chatApi from "./examples/chatApi.js";
+import tenKQna from "./tests/tenKQna.js";
 
 export default async function test() {
   const test_type =
-    process.env.TEST_TYPE ||
+    process.env.DEFAULT_TEST ||
     (await select({
       message: "What test would you like to run?",
       choices: [
@@ -28,13 +30,19 @@ export default async function test() {
 
   console.log(chalk.cyan("Running tests..."));
 
-  switch (test_type as string) {
+  switch (test_type) {
     case "sotu-bench":
       await stateOfTheUnionChroma();
       await stateOfTheUnionHNSW();
       break;
     case "gpp":
       await gameProgrammingPatterns(davinci);
+      break;
+    case "chatApi":
+      await chatApi();
+      break;
+      case "current_test":
+      await tenKQna();
       break;
   }
 

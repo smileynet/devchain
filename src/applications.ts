@@ -6,8 +6,7 @@ import { runBabyAGI } from "./apps/babyAGI/runBabyAGI.js";
 export default async function applications() {
   const prompt = await input({
     message:
-      "Welcome to DevChain!\n\n" +
-      "You will be select from among different chain methods.\n\n" +
+      "Select from among different chain methods.\n\n" +
       "Please provide your prompt:",
     default: "Write a weather report for Seattle, Washington.",
   });

@@ -43,9 +43,8 @@ Present the code flow in an ordered list.`,
     description: "App Outline",
     task: `Referencing the app name, description, architecture, UX flow
 and code flow  previously discussed, complete the task below.
-Write a list of files, classes, and methods to be completed later.
-Provide comments for each item for use in future generations.
-The output should be in JSON format.`,
+Write a YAML outline that contains a list of files, classes, and methods to be completed later.
+Provide comments for each item for use in future generations.`,
     maxTokens: 2000,
   },
 };

@@ -544,6 +544,13 @@ chardet@^0.7.0:
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+chatgpt-plus-api-client@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/chatgpt-plus-api-client/-/chatgpt-plus-api-client-1.2.0.tgz#714172f32b1e8f47e1f01472175d4fd0d591efa0"
+  integrity sha512-KrZecBFAHZ9uvjmmYqc3EhaKBCyqIQWwDpuSF4LAzVD2XlZI0MWMPYmLP2278Rr6ba8TYuY3UpBDoyyBVu/rlQ==
+  dependencies:
+    dotenv "^16.0.3"
+
 cheerio-select@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cheerio-select/-/cheerio-select-2.1.0.tgz#4d8673286b8126ca2a8e42740d5e3c4884ae21b4"

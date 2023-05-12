@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { OpenAI } from "langchain/llms/openai";
 import { Replicate } from "langchain/llms/replicate";
-
 dotenv.config();
 
 export type LLMModel = OpenAI | Replicate;
@@ -88,3 +87,4 @@ export const replicate_gptj6b = new Replicate({
     "replicate/gpt-j-6b:b3546aeec6c9891f0dd9929c2d3bedbf013c12e02e7dd0346af09c37e008c827",
   apiKey: process.env.REPLICATE_API_KEY,
 });
+

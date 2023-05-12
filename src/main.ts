@@ -12,7 +12,9 @@ async function main() {
     mode = process.env.DEFAULT_CHOICE;
   } else {
     mode = await select({
-      message: "Which mode would you like to use?",
+      message:
+        "Welcome to DevChain!\n\n" +
+        "Which mode would you like to use?",
       choices: [
         {
           name: "Examples",
