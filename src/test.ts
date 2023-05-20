@@ -7,6 +7,7 @@ import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 import logPerformanceMeasures from "./utils/logPerformanceMeasures.js";
 import chatApi from "./examples/chatApi.js";
 import tenKQna from "./tests/tenKQna.js";
+import {runGameDevChain} from "@src/games/gameDev/runGameDevChain.js";
 
 export default async function test() {
   const test_type =
@@ -42,7 +43,7 @@ export default async function test() {
       await chatApi();
       break;
       case "current_test":
-      await tenKQna();
+      await runGameDevChain();
       break;
   }
 

@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import applications from "./applications.js";
 import examples from "./examples.js";
 import test from "./test.js";
+import games from "./games.js";
 
 dotenv.config();
 
@@ -17,15 +18,21 @@ async function main() {
         "Which mode would you like to use?",
       choices: [
         {
-          name: "Examples",
-          value: "examples",
-          description: "Run examples.",
+          name: "Games",
+          value: "games",
+          description: "Run game chains.",
         },
         {
           name: "Applications",
           value: "applications",
-          description: "Run applications.",
+          description: "Run application chains.",
         },
+        {
+          name: "Examples",
+          value: "examples",
+          description: "Run examples.",
+        },
+
         {
           name: "Test",
           value: "test",
@@ -36,11 +43,14 @@ async function main() {
   }
 
   switch (mode) {
-    case "examples":
-      await examples();
+    case "games":
+      await games();
       break;
     case "applications":
       await applications();
+      break;
+    case "examples":
+      await examples();
       break;
     case "test":
       await test();
