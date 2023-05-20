@@ -15,6 +15,11 @@ export default async function applications() {
     message: "Which method would you like to use?",
     choices: [
       {
+        name: "DevChain",
+        value: "devchain",
+        description: "DevChain LangChain sequence for creating an application.",
+      },
+      {
         name: "BabyAGI",
         value: "babyagi",
         description: "BabyAGI LangChain agent for tasks.",
@@ -23,11 +28,6 @@ export default async function applications() {
         name: "AutoGPT",
         value: "autogpt",
         description: "AutoGPT LangChain agent for tasks.",
-      },
-      {
-        name: "DevChain",
-        value: "devchain",
-        description: "DevChain LangChain sequence for creating an application.",
       },
     ],
   });

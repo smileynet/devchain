@@ -44,20 +44,26 @@ Here is your current task:
   ]);
 
   if (process.env.VERBOSE_DEBUG === "true") console.debug("Prompt: ", prompt);
-  const llmConfig = {
-    basePath: "https://oai.hconeai.com/v1",
-    baseOptions: {
-      headers: {
-        "Helicone-Cache-Enabled": "true",
-        "Helicone-Auth": `Bearer ${process.env.HELICON_API_KEY}`,
+  let llmConfig;
+  if (process.env.USE_HELICONE === "true") {
+    llmConfig = {
+      basePath: "https://oai.hconeai.com/v1",
+      baseOptions: {
+        headers: {
+          "Helicone-Cache-Enabled": "true",
+          "Helicone-Auth": `Bearer ${process.env.HELICON_API_KEY}`,
+        },
       },
+    };
+  }
+  const llm = new ChatOpenAI(
+    {
+      modelName: options.model,
+      temperature: 0.35,
+      verbose: options.verbose,
     },
-  };
-  const llm = new ChatOpenAI({
-    modelName: options.model,
-    temperature: 0.35,
-    verbose: options.verbose,
-  });
+    llmConfig
+  );
 
   const chainInstance = new LLMChain({
     prompt: prompt,
