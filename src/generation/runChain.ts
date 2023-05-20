@@ -5,13 +5,13 @@ export async function runChain(
   llmChain: LLMChain,
   taskPrompt: BasePromptValue
 ) {
-  console.debug("Running chain...");
+  if(process.env.VERBOSE_DEBUG === "true") console.debug("Running chain...");
 
   const response = await llmChain.call({
     task: taskPrompt,
   });
 
-  console.debug("Chain completed.");
+  if(process.env.VERBOSE_DEBUG === "true") console.debug("Chain completed.");
 
   return response;
 }

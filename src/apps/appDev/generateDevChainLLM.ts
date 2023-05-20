@@ -7,9 +7,9 @@ import {
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import { SetupOptions } from "../apps/appDev/setup.js";
+import { SetupOptions } from "./setup.js";
 
-export default function generateLLMChain(options: SetupOptions) {
+export default function generateDevChainLLM(options: SetupOptions) {
   console.debug("Creating LLMChain instance...");
 
   const systemTemplate = `You are code generation AI proficient in ${options.language} and ${options.uiFramework}.

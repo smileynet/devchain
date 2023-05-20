@@ -8,7 +8,7 @@ export default async function applications() {
     message:
       "Select from among different chain methods.\n\n" +
       "Please provide your prompt:",
-    default: "Write a weather report for Seattle, Washington.",
+    default: "Create a weather report app.",
   });
 
   const methodSelection = await select({

@@ -29,7 +29,6 @@ export async function writeOutputToFile(
   }
 
   const subFolder = objective.split(" ").slice(0, 3).join("_");
-
   const basePath = outputPath || process.env.OUTPUT_PATH || "./output";
 
   const finalOutputPath = path.join(basePath, subFolder);
