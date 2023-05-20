@@ -1,16 +1,26 @@
-import {Task} from "@src/apps/appDev/tasksAppDev.js";
+import { Task } from "@src/apps/appDev/tasksAppDev.js";
 
-const tasksGameDev: Record<string, Task> = {
+const tasksGameDesign: Record<string, Task> = {
   generate_game_title: {
     description: "Generate Game Title",
-    taskVariables: ["gameGenre", "gameTheme", "gameMechanics", "inspirationGames"],
+    taskVariables: [
+      "gameGenre",
+      "gameTheme",
+      "gameMechanics",
+      "inspirationGames",
+    ],
     task: `Inspired by {inspirationGames}, generate a creative, catchy title for a {gameGenre} game with a {gameTheme} theme and these mechanics: {gameMechanics}.
     Only respond with the generated title.`,
     maxTokens: 5,
   },
   game_concept: {
     description: "Game Concept",
-    taskVariables: ["gameGenre", "gameTheme", "gameMechanics", "inspirationGames"],
+    taskVariables: [
+      "gameGenre",
+      "gameTheme",
+      "gameMechanics",
+      "inspirationGames",
+    ],
     task: `Inspired by {inspirationGames}, use your expertise to envision the game's concept and mechanics.
 The game will be a {gameGenre} game with a {gameTheme} theme.
 Develop an engaging game concept that includes these mechanics: {gameMechanics}.`,
@@ -49,4 +59,4 @@ The output should be in JSON format.`,
   },
 };
 
-export default tasksGameDev;
+export default tasksGameDesign;

@@ -1,11 +1,13 @@
-import { GameDevOptions } from "./gameDevSetup.js";
-import tasksGameDev from "./tasksGameDev.js";
 import generatePrompt from "@src/generation/generatePrompt.js";
+import { GameDevOptions } from "./gameDesignSetup.js";
+import tasksGameDesign from "./tasksGameDesign.js";
 
-export default async function generateGameDevObjective(options: GameDevOptions) {
+export default async function generateGameDesignConcept(
+  options: GameDevOptions
+) {
   console.debug("Generating game objective...");
 
-  const taskPrompt = await generatePrompt(tasksGameDev["gameConcept"], {
+  const taskPrompt = await generatePrompt(tasksGameDesign["gameConcept"], {
     genre: options.gameGenre,
     theme: options.gameTheme,
     gameMechanics: options.gameMechanics,

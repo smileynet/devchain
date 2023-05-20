@@ -1,3 +1,4 @@
+import { GameDevOptions } from "@src/games/gameDesign/gameDesignSetup.js";
 import { LLMChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { BufferMemory } from "langchain/memory";
@@ -7,7 +8,6 @@ import {
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import { GameDevOptions } from "@src/games/gameDev/gameDevSetup.js";
 
 export default function generateGameLLMChain(options: GameDevOptions) {
   console.debug("Creating GameLLMChain instance...");
@@ -53,14 +53,11 @@ Here is your current task:
       },
     },
   };
-  const llm = new ChatOpenAI(
-    {
-      modelName: options.model,
-      temperature: 0.35,
-      verbose: options.verbose,
-    },
-
-  );
+  const llm = new ChatOpenAI({
+    modelName: options.model,
+    temperature: 0.35,
+    verbose: options.verbose,
+  });
 
   const chainInstance = new LLMChain({
     prompt: prompt,

@@ -54,7 +54,7 @@ export default tasksAppDev;
 /**
  Write the Python code for the app in a single python file.\n
  Use SQLite for data storage .\n
- Exclude environment gameDevSetup, testing, debugging, and deployment tasksAppDev.\n
+ Exclude environment gameDesignSetup, testing, debugging, and deployment tasksAppDev.\n
  Build sample datasets with at least five items.\n
  Follow these coding guidelines:
  - Check and create database tables first in the main function.\n

@@ -1,24 +1,22 @@
-
-import chalk from "chalk";
-import { StringPromptValue } from "langchain/prompts";
+import { gameDesignSetup } from "@src/games/gameDesign/gameDesignSetup.js";
+import generateGameConcept from "@src/games/gameDesign/generateGameConcept.js";
+import generateGameLLMChain from "@src/games/gameDesign/generateGameDesignChainLLM.js";
+import generateGameTitle from "@src/games/gameDesign/generateGameTitle.js";
+import tasksGameDesign from "@src/games/gameDesign/tasksGameDesign.js";
 import generatePrompt from "@src/generation/generatePrompt.js";
 import { runChain } from "@src/generation/runChain.js";
-import { writeOutputToFile } from "@src/utils/writeToFile.js";
-import { gameDevSetup } from "@src/games/gameDev/gameDevSetup.js";
-import tasksGameDev from "@src/games/gameDev/tasksGameDev.js";
-import generateGameLLMChain
-  from "@src/games/gameDev/generateGameDevChainLLM.js";
-import generateGameConcept from "@src/games/gameDev/generateGameConcept.js";
-import generateGameTitle from "@src/games/gameDev/generateGameTitle.js";
 import sanitizeTitle from "@src/utils/sanitizeTitle.js";
+import { writeOutputToFile } from "@src/utils/writeToFile.js";
+import chalk from "chalk";
+import { StringPromptValue } from "langchain/prompts";
 
-export async function runGameDevChain() {
-  const options = await gameDevSetup();
+export async function runGameDesignChain() {
+  const options = await gameDesignSetup();
 
   const llmChain = generateGameLLMChain(options);
 
-  for (const taskKey in tasksGameDev) {
-    const task = tasksGameDev[taskKey];
+  for (const taskKey in tasksGameDesign) {
+    const task = tasksGameDesign[taskKey];
     console.log(chalk.blue("\nCurrent task: "), task.description);
 
     let taskPrompt;
@@ -43,7 +41,7 @@ export async function runGameDevChain() {
 
       if (process.env.WRITE_TO_FILE === "true") {
         //const filetype = task.description === "Asset List" ? "json" : "md";
-        const filetype = "md"
+        const filetype = "md";
         try {
           await writeOutputToFile(
             result.text,

@@ -1,13 +1,12 @@
 import { select } from "@inquirer/prompts";
+import { runGameDesignChain } from "@src/games/gameDesign/runGameDesignChain.js";
 import chalk from "chalk";
 import { davinci } from "./config/llm.js";
+import chatApi from "./examples/chatApi.js";
 import stateOfTheUnionChroma from "./examples/stateOfTheUnionChroma.js";
 import stateOfTheUnionHNSW from "./examples/stateOfTheUnionHNSW.js";
 import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 import logPerformanceMeasures from "./utils/logPerformanceMeasures.js";
-import chatApi from "./examples/chatApi.js";
-import tenKQna from "./tests/tenKQna.js";
-import {runGameDevChain} from "@src/games/gameDev/runGameDevChain.js";
 
 export default async function test() {
   const test_type =
@@ -42,8 +41,8 @@ export default async function test() {
     case "chatApi":
       await chatApi();
       break;
-      case "current_test":
-      await runGameDevChain();
+    case "current_test":
+      await runGameDesignChain();
       break;
   }
 
