@@ -13,7 +13,7 @@ const tasksAppDev: Record<string, Task> = {
     taskVariables: ["language", "uiFramework", "objective"],
     task: `Use your expertise to envision the app's purpose and functionality.
 Users will interact with the web app built using {uiFramework} and {language}.
-Create a concise description for the {language} app: {objective}`,
+Create a concise description for the {language} app: {objective}.`,
     maxTokens: 200,
   },
   architecture: {
@@ -54,7 +54,7 @@ export default tasksAppDev;
 /**
  Write the Python code for the app in a single python file.\n
  Use SQLite for data storage .\n
- Exclude environment setup, testing, debugging, and deployment tasksAppDev.\n
+ Exclude environment gameDesignSetup, testing, debugging, and deployment tasksAppDev.\n
  Build sample datasets with at least five items.\n
  Follow these coding guidelines:
  - Check and create database tables first in the main function.\n

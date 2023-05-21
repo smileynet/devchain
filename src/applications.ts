@@ -8,12 +8,17 @@ export default async function applications() {
     message:
       "Select from among different chain methods.\n\n" +
       "Please provide your prompt:",
-    default: "Write a weather report for Seattle, Washington.",
+    default: "Create a weather report app.",
   });
 
   const methodSelection = await select({
     message: "Which method would you like to use?",
     choices: [
+      {
+        name: "DevChain",
+        value: "devchain",
+        description: "DevChain LangChain sequence for creating an application.",
+      },
       {
         name: "BabyAGI",
         value: "babyagi",
@@ -23,11 +28,6 @@ export default async function applications() {
         name: "AutoGPT",
         value: "autogpt",
         description: "AutoGPT LangChain agent for tasks.",
-      },
-      {
-        name: "DevChain",
-        value: "devchain",
-        description: "DevChain LangChain sequence for creating an application.",
       },
     ],
   });

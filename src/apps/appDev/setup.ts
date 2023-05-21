@@ -10,7 +10,7 @@ export interface SetupOptions {
 }
 
 export async function setup(prompt?: string) {
-  console.debug("Running setup...");
+  console.debug("Running gameDesignSetup...");
   const appObjective = prompt
     ? prompt
     : await input({

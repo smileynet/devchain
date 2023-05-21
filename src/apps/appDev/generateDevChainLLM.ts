@@ -7,9 +7,9 @@ import {
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import { SetupOptions } from "../apps/appDev/setup.js";
+import { SetupOptions } from "./setup.js";
 
-export default function generateLLMChain(options: SetupOptions) {
+export default function generateDevChainLLM(options: SetupOptions) {
   console.debug("Creating LLMChain instance...");
 
   const systemTemplate = `You are code generation AI proficient in ${options.language} and ${options.uiFramework}.
@@ -45,13 +45,9 @@ Here is your current task:
 
   if (process.env.VERBOSE_DEBUG) console.debug("Prompt: ", prompt);
 
-  const llm = new ChatOpenAI(
-    {
-      modelName: options.model,
-      temperature: 0.35,
-      verbose: options.verbose,
-    },
-    {
+  let llmConfig;
+  if (process.env.USE_HELICONE === "true") {
+    llmConfig = {
       basePath: "https://oai.hconeai.com/v1",
       baseOptions: {
         headers: {
@@ -59,7 +55,16 @@ Here is your current task:
           "Helicone-Auth": `Bearer ${process.env.HELICON_API_KEY}`,
         },
       },
-    }
+    };
+  }
+
+  const llm = new ChatOpenAI(
+    {
+      modelName: options.model,
+      temperature: 0.35,
+      verbose: options.verbose,
+    },
+    llmConfig
   );
 
   const chainInstance = new LLMChain({

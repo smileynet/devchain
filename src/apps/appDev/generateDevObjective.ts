@@ -1,8 +1,8 @@
-import { SetupOptions } from "../apps/appDev/setup.js";
-import tasksAppDev from "../apps/appDev/tasksAppDev.js";
-import generatePrompt from "./generatePrompt.js";
+import { SetupOptions } from "./setup.js";
+import tasksAppDev from "./tasksAppDev.js";
+import generatePrompt from "../../generation/generatePrompt.js";
 
-export default async function generateObjective(options: SetupOptions) {
+export default async function generateDevObjective(options: SetupOptions) {
   console.debug("Generating objective...");
 
   const taskPrompt = await generatePrompt(tasksAppDev["objective"], {
@@ -11,7 +11,7 @@ export default async function generateObjective(options: SetupOptions) {
     objective: options.objective,
   });
 
-  if (process.env.VERBOSE_DEBUG)
+  if (process.env.VERBOSE_DEBUG==="true")
     console.debug("Generate task prompt: ", taskPrompt);
 
   return taskPrompt;
