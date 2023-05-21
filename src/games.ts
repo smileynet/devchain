@@ -1,5 +1,5 @@
 import { select } from "@inquirer/prompts";
-import { runGameDesignChain } from "@src/games/gameDesign/runGameDesignChain.js";
+import runGameDesignTasks from "@src/games/gameDesign/runGameDesignTasks.js";
 
 export default async function games() {
   const gameDevMethodSelection = await select({
@@ -15,7 +15,7 @@ export default async function games() {
 
   switch (gameDevMethodSelection) {
     case "gamedevchain":
-      await runGameDesignChain();
+      await runGameDesignTasks();
       break;
   }
 }

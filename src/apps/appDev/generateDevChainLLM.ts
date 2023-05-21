@@ -52,7 +52,7 @@ Here is your current task:
       baseOptions: {
         headers: {
           "Helicone-Cache-Enabled": "true",
-          "Helicone-Auth": `Bearer ${process.env.HELICON_API_KEY}`,
+          "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
         },
       },
     };

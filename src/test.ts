@@ -1,5 +1,4 @@
 import { select } from "@inquirer/prompts";
-import { runGameDesignChain } from "@src/games/gameDesign/runGameDesignChain.js";
 import chalk from "chalk";
 import { davinci } from "./config/llm.js";
 import chatApi from "./examples/chatApi.js";
@@ -7,6 +6,7 @@ import stateOfTheUnionChroma from "./examples/stateOfTheUnionChroma.js";
 import stateOfTheUnionHNSW from "./examples/stateOfTheUnionHNSW.js";
 import gameProgrammingPatterns from "./tests/gameProgrammingPatterns.js";
 import logPerformanceMeasures from "./utils/logPerformanceMeasures.js";
+import runGameDesignTasks from "@src/games/gameDesign/runGameDesignTasks.js";
 
 export default async function test() {
   const test_type =
@@ -42,7 +42,7 @@ export default async function test() {
       await chatApi();
       break;
     case "current_test":
-      await runGameDesignChain();
+      await runGameDesignTasks();
       break;
   }
 

@@ -28,13 +28,13 @@ export default async function stateOfTheUnionChroma() {
     ],
     "sotu-chroma-load"
   );
-
+  /* CAUTION: This is an expensive operation.
   await measurePerformance(
     runSummarization,
     null,
     [docs],
     "sotu-chroma-summarize"
-  );
+  );*/
 
   const prompt = "What did the president say about Justice Breyer?";
   await measurePerformance(

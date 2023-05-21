@@ -1,21 +1,16 @@
 import { GameDevOptions } from "@src/games/gameDesign/gameDesignSetup.js";
 import { LLMChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
-import { BufferMemory } from "langchain/memory";
 import {
   ChatPromptTemplate,
   HumanMessagePromptTemplate,
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
+import memoryManager from "@src/utils/memoryManager.js";
 
-export default function generateGameLLMChain(options: GameDevOptions) {
+export default function generateGameLLMChain(options: GameDevOptions, category: string, systemTemplate: string) {
   console.debug("Creating GameLLMChain instance...");
-
-  const systemTemplate = `You are a game design AI expert.
-Your goal is to design a ${options.gameGenre} game with ${options.gameTheme} theme.
-You will use ${options.gameMechanics} for the main game mechanics.
-Use game design best practices to design the game.`;
   const systemPromptTemplate = PromptTemplate.fromTemplate(systemTemplate);
   const systemMessagePrompt = new SystemMessagePromptTemplate(
     systemPromptTemplate
@@ -25,12 +20,12 @@ Use game design best practices to design the game.`;
     console.debug("System message prompt: ", systemMessagePrompt);
 
   const userTemplate = `The following is information about the game you are designing:
-{projectMemory}
+{${category}}
 Here is your current task:
 {task}`;
 
   const userPromptTemplate = new PromptTemplate({
-    inputVariables: ["task", "projectMemory"],
+    inputVariables: ["task", `${category}`],
     template: userTemplate,
   });
   const userMessagePrompt = new HumanMessagePromptTemplate(userPromptTemplate);
@@ -44,33 +39,19 @@ Here is your current task:
   ]);
 
   if (process.env.VERBOSE_DEBUG === "true") console.debug("Prompt: ", prompt);
-  let llmConfig;
-  if (process.env.USE_HELICONE === "true") {
-    llmConfig = {
-      basePath: "https://oai.hconeai.com/v1",
-      baseOptions: {
-        headers: {
-          "Helicone-Cache-Enabled": "true",
-          "Helicone-Auth": `Bearer ${process.env.HELICON_API_KEY}`,
-        },
-      },
-    };
-  }
+
   const llm = new ChatOpenAI(
     {
       modelName: options.model,
       temperature: 0.35,
       verbose: options.verbose,
     },
-    llmConfig
   );
 
   const chainInstance = new LLMChain({
     prompt: prompt,
     llm: llm,
-    memory: new BufferMemory({
-      memoryKey: "projectMemory",
-    }),
+    memory: memoryManager.getBufferMemory(category),
   });
   console.log(`GameLLMChain instance created.`);
   return chainInstance;

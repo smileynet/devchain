@@ -20,18 +20,19 @@ export default async function stateOfTheUnionHNSW() {
     "sotu-hnsw-load"
   );
 
-  await measurePerformance(
-    runSummarization,
-    null,
-    [docs],
-    "sotu-hnsw-summarize"
-  );
-
-  const prompt = "What did the president say about Justice Breyer?";
-  await measurePerformance(
-    runRetrievalQA,
-    null,
-    [vectorStore, prompt],
-    "sotu-hnsw-qa"
-  );
+/* CAUTION: This is an expensive operation.
+await measurePerformance(
+  runSummarization,
+  null,
+  [docs],
+  "sotu-hnsw-summarize"
+);
+*/
+const prompt = "What did the president say about Justice Breyer?";
+await measurePerformance(
+  runRetrievalQA,
+  null,
+  [vectorStore, prompt],
+  "sotu-hnsw-qa"
+);
 }
