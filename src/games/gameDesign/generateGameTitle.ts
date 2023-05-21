@@ -1,12 +1,12 @@
 import generatePrompt from "@src/generation/generatePrompt.js";
 import { GameDevOptions } from "./gameDesignSetup.js";
-import tasksGameDesign from "./tasksGameDesign.js";
+import gameDesign from "./tasks/gameDesign.js";
 
 export default async function generateGameTitle(options: GameDevOptions) {
   console.debug("Generating game title...");
 
   const taskPrompt = await generatePrompt(
-    tasksGameDesign["generate_game_title"],
+    gameDesign.tasks["generate_game_title"],
     {
       gameGenre: options.gameGenre,
       gameTheme: options.gameTheme,

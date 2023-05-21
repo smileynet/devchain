@@ -18,7 +18,9 @@ done in Node.js to avoid wasting extra time putting it all in a web interface fo
 1. yarn install
 2. yarn cli
 
-For now there are two modes:
+The current available modes are:
 
+1. Games, currently there is a game design chain meant to help with initial ideation for a game
+1. Applications, including a simple application design chain
+1. Tests, which allow for A/B testing of things like prompts with and without vector stores
 1. Examples, which run canned examples copied or derived from the LangChain documentation
-2. Applications, which feature more generative applications of LangChain
