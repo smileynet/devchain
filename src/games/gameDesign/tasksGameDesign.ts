@@ -10,7 +10,8 @@ const tasksGameDesign: Record<string, Task> = {
       "inspirationGames",
     ],
     task: `Considering the inspiration from {inspirationGames}, create a unique and catchy title for a {gameGenre} game with a {gameTheme} theme and the following mechanics: {gameMechanics}.
-  Ensure the title captures the essence of the game in a witty and memorable way. The title should stand out and pique interest.`,
+  Ensure the title captures the essence of the game in a witty and memorable way. The title should stand out and pique interest.
+  Return only the title.`,
     maxTokens: 10,
   },
 
@@ -24,7 +25,7 @@ const tasksGameDesign: Record<string, Task> = {
     ],
     task: `Based on the inspiration from {inspirationGames}, develop an engaging game concept for a {gameGenre} game with a {gameTheme} theme.
   Incorporate these mechanics: {gameMechanics}.
-  Produce a detailed summary of the game concept and mechanics, outlining how they will interact and enhance the gameplay experience.`,
+  Produce a concise, one to two paragraph summary of the game concept and mechanics, outlining how they will interact and enhance the gameplay experience.`,
     maxTokens: 100,
   },
 
@@ -33,17 +34,19 @@ const tasksGameDesign: Record<string, Task> = {
     task: `Reference the game concept and mechanics previously discussed, complete the task below:
   Create a game design document. Begin with a high level summary that outlines the game's genre, theme, mechanics, and inspirations.
   Then, delve into details: describe the game mechanics in depth, the core gameplay loop, user interface design, character and level design, art and sound style, and storyline.
-  Discuss the unique selling points of the game and potential target audiences.
-  Ensure the document is well-structured and easy to follow.`,
+  Discuss the unique selling points of the game and potential target audiences.`,
     maxTokens: 2000,
   },
 
   game_story_bible: {
     description: "Game Story Bible",
     task: `Referring to the game concept and design document, create a comprehensive story bible.
-  Develop unique characters that fit with the genre and theme, giving each a distinct name, backstory, and role in the game world.
   Elaborate on the world's lore, central conflict, and overarching story arc.
-  Begin with an opening narrative that sets the tone and introduces the main conflict, and outline the story progression for the introductory level.`,
+  Develop unique characters that fit with the genre and theme, giving each a distinct name, archetype, backstory, and role in the game world.
+  There should be one protagonist, two antagonists, and three supporting characters.
+  There should be three to five major factions, each with a distinct name, history, and ideology.
+  Include major locations and landmarks, giving them descriptions and potential plot significance.
+  Give an opening narrative that sets the tone and introduces the main conflict, and outline the story progression for the introductory level.`,
     maxTokens: 2500,
   },
 
@@ -71,7 +74,7 @@ const tasksGameDesign: Record<string, Task> = {
     task: `Referencing the game concept, design document, level design, and game flow, generate a list of specific art assets needed for development.
   Group these assets into categories: character sprites, environment assets, enemy sprites, UI elements, and others.
   Provide a detailed description and purpose for each asset, ensuring they align with the 16-bit retro pixel style.
-  Output the asset list in YAML format for easy interpretation and use.`,
+  Output the asset list in an organized fashion for easy interpretation and use.`,
     maxTokens: 1500,
   },
 
@@ -79,8 +82,7 @@ const tasksGameDesign: Record<string, Task> = {
     description: "Game Code Outline",
     task: `Considering the game concept, design document, level design, game flow, and asset list, outline the game's core mechanics and modules from a code perspective.
   Identify primary game systems and modules and provide recommendations on how they can be implemented using TypeScript.
-  For each system or module, suggest at least two appropriate TypeScript packages, providing pros, cons, and rationale for each recommendation.
-  The output should be an ordered list of systems, modules, and mechanics, each with their purpose and recommended packages detailed.`,
+  The output should be an ordered list of systems, modules, and mechanics, each with their purpose.`,
     maxTokens: 3000,
   },
 
@@ -89,18 +91,16 @@ const tasksGameDesign: Record<string, Task> = {
     task: `Referencing all the previous work done for our game, provide a holistic critique of the overall game design.
   Analyze the game from the perspectives of a player, a game designer, an artist, and a programmer.
   For each perspective, offer both positive feedback and constructive criticism.
-  Discuss gameplay, narrative, aesthetics, technical implementation, and the unique game mechanics.
-  Also, outline what a minimum viable product (MVP) would look like for this game, considering each perspective's expectations.`,
+  Discuss gameplay, narrative, aesthetics, technical implementation, and the unique game mechanics.`,
     maxTokens: 1500,
   },
 
   game_project_plan: {
     description: "Game Project Plan",
-    task: `Referencing all the previous work done for our game, create a detailed project plan.
-  Summarize the steps generated so far and organize them into an ordered task list.
-  Design the plan to support collaborative development, dividing tasks into different workflows for different teams (design, art, programming, testing).
-  For each task, detail its objective, team responsible, key milestones, potential risks, and dependencies.
-  As GPT-4 cannot create graphical content directly, instead of a Mermaid diagram, provide a textual representation that can be used with a tool that supports Mermaid.`,
+    task: `Based on all the previous work done for our game, create a detailed project plan.
+  he project plan should be structured to support a collaborative development environment, splitting tasks into multiple workflows that can be tackled by different teams.
+  This includes tasks for game design, art production, front-end programming, back-end programming, and testing.
+  For each task, detail its objective, key milestones, potential risks, and dependencies.`,
     maxTokens: 3000,
   },
 };

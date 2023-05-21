@@ -15,6 +15,8 @@ export async function runGameDesignChain() {
 
   const llmChain = generateGameLLMChain(options);
 
+  let fileNumber = 0;
+
   for (const taskKey in tasksGameDesign) {
     const task = tasksGameDesign[taskKey];
     console.log(chalk.blue("\nCurrent task: "), task.description);
@@ -40,12 +42,15 @@ export async function runGameDesignChain() {
       console.log(chalk.green("Result:\n"), result.text);
 
       if (process.env.WRITE_TO_FILE === "true") {
+        fileNumber += 1;
+        const fileName =
+          fileNumber + "-" + task.description.toLowerCase().replace(" ", "_");
         //const filetype = task.description === "Asset List" ? "json" : "md";
         const filetype = "md";
         try {
           await writeOutputToFile(
             result.text,
-            task.description.toLowerCase().replace(" ", "_"),
+            fileName,
             filetype,
             options.gameTitle ? options.gameTitle : options.gameGenre
           );
