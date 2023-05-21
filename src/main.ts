@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 import applications from "./applications.js";
 import examples from "./examples.js";
 import test from "./test.js";
-import games from "./games.js";
 
 dotenv.config();
 
@@ -17,11 +16,6 @@ async function main() {
         "Welcome to DevChain!\n\n" +
         "Which mode would you like to use?",
       choices: [
-        {
-          name: "Games",
-          value: "games",
-          description: "Run game chains.",
-        },
         {
           name: "Applications",
           value: "applications",
@@ -43,9 +37,6 @@ async function main() {
   }
 
   switch (mode) {
-    case "games":
-      await games();
-      break;
     case "applications":
       await applications();
       break;
