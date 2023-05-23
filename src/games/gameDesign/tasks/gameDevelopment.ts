@@ -19,7 +19,7 @@ const gameDevelopment: Workflow = {
     For each package, provide a description of its purpose and how it can be used to implement the game.
     recommend two to three packages for each game system or module.
     Provide the pros and cons of each with a final recommendation for which package to use.`,
-      maxTokens: 3000,
+      maxTokens: 1000,
       temperature: 0.2,
     },
   },

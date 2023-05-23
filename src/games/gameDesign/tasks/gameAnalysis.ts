@@ -14,16 +14,6 @@ const gameAnalysis: Workflow = {
       maxTokens: 1500,
       temperature: 0.5,
     },
-
-    game_project_plan: {
-      description: "Game Project Plan",
-      task: `Based on all the previous work done for our game, create a detailed project plan.
-    The project plan should be structured to support a collaborative development environment, splitting tasks into multiple workflows that can be tackled by different teams.
-    This includes tasks for game design, art production, front-end programming, back-end programming, and testing.
-    For each task, detail its objective, key milestones, potential risks, and dependencies.`,
-      maxTokens: 3000,
-      temperature: 0.3,
-    },
   },
 };
 

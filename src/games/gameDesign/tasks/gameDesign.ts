@@ -2,7 +2,9 @@ import { Workflow } from "@src/games/gameDesign/tasks/protoTask.js";
 
 const gameDesign: Workflow = {
   systemTemplate: `You are a game design AI expert.
-  Your goal is to design a game with a unique title and concept. Generate a comprehensive game design document, story bible, level design, and game flow.`,
+  You have been tasked with designing a new game.
+  You look to combine game mechanics in novel ways to create a unique and engaging experience.
+  Your goal is to design a game with a unique title and concept. Generate a comprehensive game design document, story bible.`,
   tasks: {
     generate_game_title: {
       description: "Generate Game Title",
@@ -30,7 +32,7 @@ const gameDesign: Workflow = {
       task: `Based on the inspiration from {inspirationGames}, develop an engaging game concept for a {gameGenre} game with a {gameTheme} theme.
   Incorporate these mechanics: {gameMechanics}.
   Produce a concise, one to two paragraph summary of the game concept and mechanics, outlining how they will interact and enhance the gameplay experience.`,
-      maxTokens: 100,
+      maxTokens: 300,
       temperature: 0.7,
     },
 
@@ -43,7 +45,6 @@ const gameDesign: Workflow = {
       maxTokens: 2000,
       temperature: 0.7,
     },
-
     game_story_bible: {
       description: "Game Story Bible",
       task: `Referring to the game concept and design document, create a comprehensive story bible.
@@ -53,29 +54,8 @@ const gameDesign: Workflow = {
   There should be three to five major factions, each with a distinct name, history, and ideology.
   Include major locations and landmarks, giving them descriptions and potential plot significance.
   Give an opening narrative that sets the tone and introduces the main conflict, and outline the story progression for the introductory level.`,
-      maxTokens: 2500,
+      maxTokens: 2000,
       temperature: 1,
-    },
-
-    level_design: {
-      description: "Level Design",
-      task: `Referencing the game concept, design document, and story bible, create a detailed level design.
-  Design an introductory level, as well as two other levels, ensuring they reflect the game mechanics and theme.
-  Describe the structure, objectives, enemies, challenges, and progression of each level.
-  Also, provide a description of the environmental design, including the aesthetic, ambient sounds, and interactive elements.
-  Present the level design in an organized format, allowing for easy interpretation.`,
-      maxTokens: 1000,
-      temperature: 0.5,
-    },
-
-    game_flow: {
-      description: "Game Flow",
-      task: `Based on the game concept, design document, and level design, create a comprehensive game flow.
-  Detail the player's journey, including their actions, the game's response, and the overall progression system.
-  Include descriptions of controls, game mechanics, and player feedback systems.
-  The output should be a step-by-step description of the gameplay experience from the player's perspective.`,
-      maxTokens: 1000,
-      temperature: 0.5,
     },
   },
 };
