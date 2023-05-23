@@ -1,24 +1,31 @@
-import {
-  GameDevOptions
-} from "@src/games/gameDesign/gameDesignSetup.js";
+import { GameDevOptions } from "@src/games/gameDesign/gameDesignSetup.js";
 import generateGameConcept from "@src/games/gameDesign/generateGameConcept.js";
-import generateGameLLMChain from "@src/games/gameDesign/generateGameDesignChainLLM.js";
+import generateGameLLMChain from "@src/games/gameDesign/generateGameLLMChain.js";
 import generateGameTitle from "@src/games/gameDesign/generateGameTitle.js";
+import { tasks } from "@src/games/gameDesign/runGameDesignTasks.js";
 import generatePrompt from "@src/generation/generatePrompt.js";
 import { runChain } from "@src/generation/runChain.js";
 import sanitizeTitle from "@src/utils/sanitizeTitle.js";
 import { writeOutputToFile } from "@src/utils/writeToFile.js";
 import chalk from "chalk";
 import { StringPromptValue } from "langchain/prompts";
-import {tasks} from "@src/games/gameDesign/runGameDesignTasks.js";
 
-
-export async function runGameDesignChain(category: string, taskKey: string, options: GameDevOptions) {
-  const llmChain = generateGameLLMChain(options, category, tasks[category].systemTemplate);
-
+export async function runGameDesignChain(
+  category: string,
+  taskKey: string,
+  options: GameDevOptions
+) {
   // Get task from category
   const task = tasks[category].tasks[taskKey];
   console.log(chalk.blue("\nCurrent task: "), task.description);
+
+  const llmChain = generateGameLLMChain(
+    options,
+    category,
+    tasks[category].systemTemplate,
+    task.temperature,
+    task.maxTokens
+  );
 
   let taskPrompt;
   if (taskKey === "generate_game_title") {
@@ -41,7 +48,9 @@ export async function runGameDesignChain(category: string, taskKey: string, opti
     console.log(chalk.green("Result:\n"), result.text);
 
     if (process.env.WRITE_TO_FILE === "true") {
-      const fileName = `${category}-${task.description.toLowerCase().replace(" ", "_")}`;
+      const fileName = `${category}-${task.description
+        .toLowerCase()
+        .replace(" ", "_")}`;
       const filetype = "md";
       try {
         await writeOutputToFile(

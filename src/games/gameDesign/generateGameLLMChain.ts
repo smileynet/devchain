@@ -1,15 +1,22 @@
 import { GameDevOptions } from "@src/games/gameDesign/gameDesignSetup.js";
+import memoryManager from "@src/utils/memoryManager.js";
 import { LLMChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
+import { Replicate } from "langchain/llms/replicate";
 import {
   ChatPromptTemplate,
   HumanMessagePromptTemplate,
   PromptTemplate,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import memoryManager from "@src/utils/memoryManager.js";
 
-export default function generateGameLLMChain(options: GameDevOptions, category: string, systemTemplate: string) {
+export default function generateGameLLMChain(
+  options: GameDevOptions,
+  category: string,
+  systemTemplate: string,
+  temperature = 0.35,
+  maxTokens = 200
+) {
   console.debug("Creating GameLLMChain instance...");
   const systemPromptTemplate = PromptTemplate.fromTemplate(systemTemplate);
   const systemMessagePrompt = new SystemMessagePromptTemplate(
@@ -40,13 +47,20 @@ Here is your current task:
 
   if (process.env.VERBOSE_DEBUG === "true") console.debug("Prompt: ", prompt);
 
-  const llm = new ChatOpenAI(
-    {
+  let llm;
+  if (process.env.USE_ALT_MODELS === "true") {
+    llm = new Replicate({
+      model:
+        "replicate/dolly-v2-12b:ef0e1aefc61f8e096ebe4db6b2bacc297daf2ef6899f0f7e001ec445893500e5",
+    });
+  } else {
+    llm = new ChatOpenAI({
       modelName: options.model,
-      temperature: 0.35,
+      temperature: temperature,
       verbose: options.verbose,
-    },
-  );
+      maxTokens: maxTokens,
+    });
+  }
 
   const chainInstance = new LLMChain({
     prompt: prompt,

@@ -3,6 +3,7 @@ export interface WorkflowTask {
   taskVariables?: string[];
   task: string;
   maxTokens: number;
+  temperature?: number;
 }
 
 export interface Workflow {

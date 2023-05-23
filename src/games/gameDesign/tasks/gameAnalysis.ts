@@ -1,4 +1,4 @@
-import {Workflow} from "@src/games/gameDesign/tasks/protoTask.js";
+import { Workflow } from "@src/games/gameDesign/tasks/protoTask.js";
 
 const gameAnalysis: Workflow = {
   systemTemplate: `You are a game analysis AI expert.
@@ -12,6 +12,7 @@ const gameAnalysis: Workflow = {
     For each perspective, offer both positive feedback and constructive criticism.
     Discuss gameplay, narrative, aesthetics, technical implementation, and the unique game mechanics.`,
       maxTokens: 1500,
+      temperature: 0.5,
     },
 
     game_project_plan: {
@@ -21,6 +22,7 @@ const gameAnalysis: Workflow = {
     This includes tasks for game design, art production, front-end programming, back-end programming, and testing.
     For each task, detail its objective, key milestones, potential risks, and dependencies.`,
       maxTokens: 3000,
+      temperature: 0.3,
     },
   },
 };

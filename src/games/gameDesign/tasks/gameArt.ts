@@ -1,4 +1,4 @@
-import {Workflow} from "@src/games/gameDesign/tasks/protoTask.js";
+import { Workflow } from "@src/games/gameDesign/tasks/protoTask.js";
 
 const gameArt: Workflow = {
   systemTemplate: `You are a game art AI expert.
@@ -12,6 +12,7 @@ const gameArt: Workflow = {
     Provide a detailed description and purpose for each asset, ensuring they align with the 16-bit retro pixel style.
     Output the asset list in an organized fashion for easy interpretation and use.`,
       maxTokens: 1500,
+      temperature: 0.7,
     },
     art_style_guide: {
       description: "Art Style Guide",
@@ -20,8 +21,9 @@ const gameArt: Workflow = {
     The style guide should be detailed enough to be used by artists to create the actual assets.
     Output the style guide in an organized fashion for easy interpretation and use.`,
       maxTokens: 1000,
+      temperature: 0.7,
     },
-  }
+  },
 };
 
 export default gameArt;

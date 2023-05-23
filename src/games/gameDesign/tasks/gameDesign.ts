@@ -1,4 +1,4 @@
-import {Workflow} from "@src/games/gameDesign/tasks/protoTask.js";
+import { Workflow } from "@src/games/gameDesign/tasks/protoTask.js";
 
 const gameDesign: Workflow = {
   systemTemplate: `You are a game design AI expert.
@@ -16,6 +16,7 @@ const gameDesign: Workflow = {
   Ensure the title captures the essence of the game in a witty and memorable way. The title should stand out and pique interest.
   Return only the title.`,
       maxTokens: 10,
+      temperature: 1,
     },
 
     game_concept: {
@@ -30,6 +31,7 @@ const gameDesign: Workflow = {
   Incorporate these mechanics: {gameMechanics}.
   Produce a concise, one to two paragraph summary of the game concept and mechanics, outlining how they will interact and enhance the gameplay experience.`,
       maxTokens: 100,
+      temperature: 0.7,
     },
 
     game_design_document: {
@@ -39,6 +41,7 @@ const gameDesign: Workflow = {
   Then, delve into details: describe the game mechanics in depth, the core gameplay loop, user interface design, character and level design, art and sound style, and storyline.
   Discuss the unique selling points of the game and potential target audiences.`,
       maxTokens: 2000,
+      temperature: 0.7,
     },
 
     game_story_bible: {
@@ -51,6 +54,7 @@ const gameDesign: Workflow = {
   Include major locations and landmarks, giving them descriptions and potential plot significance.
   Give an opening narrative that sets the tone and introduces the main conflict, and outline the story progression for the introductory level.`,
       maxTokens: 2500,
+      temperature: 1,
     },
 
     level_design: {
@@ -61,6 +65,7 @@ const gameDesign: Workflow = {
   Also, provide a description of the environmental design, including the aesthetic, ambient sounds, and interactive elements.
   Present the level design in an organized format, allowing for easy interpretation.`,
       maxTokens: 1000,
+      temperature: 0.5,
     },
 
     game_flow: {
@@ -70,8 +75,9 @@ const gameDesign: Workflow = {
   Include descriptions of controls, game mechanics, and player feedback systems.
   The output should be a step-by-step description of the gameplay experience from the player's perspective.`,
       maxTokens: 1000,
+      temperature: 0.5,
     },
-  }
+  },
 };
 
 export default gameDesign;

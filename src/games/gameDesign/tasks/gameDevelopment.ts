@@ -1,4 +1,4 @@
-import {Workflow} from "@src/games/gameDesign/tasks/protoTask.js";
+import { Workflow } from "@src/games/gameDesign/tasks/protoTask.js";
 
 const gameDevelopment: Workflow = {
   systemTemplate: `You are a game development AI expert.
@@ -11,6 +11,7 @@ const gameDevelopment: Workflow = {
     Identify primary game systems and modules and provide recommendations on how they can be implemented using TypeScript.
     The output should be an ordered list of systems, modules, and mechanics, each with their purpose.`,
       maxTokens: 3000,
+      temperature: 0,
     },
     package_recommendations: {
       description: "Package Recommendations",
@@ -19,8 +20,9 @@ const gameDevelopment: Workflow = {
     recommend two to three packages for each game system or module.
     Provide the pros and cons of each with a final recommendation for which package to use.`,
       maxTokens: 3000,
-    }
-  }
+      temperature: 0.2,
+    },
+  },
 };
 
 export default gameDevelopment;
