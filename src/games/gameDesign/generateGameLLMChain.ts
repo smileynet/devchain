@@ -47,6 +47,10 @@ Here is your current task:
 
   if (process.env.VERBOSE_DEBUG === "true") console.debug("Prompt: ", prompt);
 
+  if (options.model === "gpt-3.5-turbo" && maxTokens > 1000) {
+    maxTokens = 1000;
+  }
+
   let llm;
   if (process.env.USE_ALT_MODELS === "true") {
     llm = new Replicate({

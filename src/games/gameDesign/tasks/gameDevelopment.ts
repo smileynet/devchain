@@ -10,7 +10,7 @@ const gameDevelopment: Workflow = {
       task: `Considering the game concept, design document, level design, game flow, and asset list, outline the game's core mechanics and modules from a code perspective.
     Identify primary game systems and modules and provide recommendations on how they can be implemented using TypeScript.
     The output should be an ordered list of systems, modules, and mechanics, each with their purpose.`,
-      maxTokens: 3000,
+      maxTokens: 2000,
       temperature: 0,
     },
     package_recommendations: {
@@ -19,7 +19,7 @@ const gameDevelopment: Workflow = {
     For each package, provide a description of its purpose and how it can be used to implement the game.
     recommend two to three packages for each game system or module.
     Provide the pros and cons of each with a final recommendation for which package to use.`,
-      maxTokens: 1000,
+      maxTokens: 500,
       temperature: 0.2,
     },
   },
