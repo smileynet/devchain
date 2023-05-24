@@ -5,8 +5,8 @@ from python.dialogAgent import DialogueAgent
 
 
 def customer_dialog_setup(customer_name, topic, sa_name):
-    word_limit = 50  # word limit for task brainstorming
-    discussion_description = f"""Here is the topic for a AWS architecture discussion: {topic}.
+    word_limit = 200  # word limit for task brainstorming
+    discussion_description = f"""Here is the topic for an AWS architecture discussion: {topic}.
         There is one learner in the discussion: the customer, {customer_name}.
         The conversation is led by a Solutions Architect, {sa_name}."""
     customer_descriptor_system_message = SystemMessage(
@@ -29,7 +29,8 @@ def customer_dialog_setup(customer_name, topic, sa_name):
         HumanMessage(content=
                      f"""{discussion_description}
           Please reply with a creative description of the Solutions Architect, {sa_name}, in {word_limit} words or less.
-          This is an AWS employee and a technical expert. Their goal is to help the customer design a solution.
+          This is an AWS employee and a technical expert.
+          Their goal is to help the customer design a solution.
           The solution should be an AWS architecture that solves the customer problem.
           Speak directly to {sa_name}.
           Do not add anything else."""
@@ -45,8 +46,11 @@ def customer_dialog_setup(customer_name, topic, sa_name):
         f"""{discussion_description}
   Never forget you are the customer, {customer_name}, and I am the Solutions Architect, {sa_name}.
   Your description is as follows: {customer_description}.
+  You have very limited knowledge of AWS.
   You will as questions about how to solve your problem and how my solution works.
   I will propose solutions to your problem and answer your questions about my proposal.
+  You will only ask questions about AWS services that have already mentioned.
+  You will ask questions about different parts of of the proposed architecture after it has been described.
   Speak in the first person from the perspective of {customer_name}.
   Do not change roles!
   Do not speak from the perspective of {sa_name}.
@@ -61,6 +65,12 @@ def customer_dialog_setup(customer_name, topic, sa_name):
   Never forget you are the Solutions Architect, {sa_name}, and I am the customer, {customer_name}.
   Your  description is as follows: {sa_description}.
   I will ask for help solving a problem and will ask questions about your solution.
+  You will begin by by restating the customer problem and then provide a summary of the proposed solution.
+  The solution should be described in general terms.
+  Only mention AWS services as potential examples as parts of the solution.
+  Only mention AWS services that are relevant to the solution.
+  You will answer questions about the proposed solution as if explaining it to a teenager.
+  You will only give detailed answers about AWS services when asked about them.
   Speak in the first person from the perspective of {sa_name}.
   Do not change roles!
   Do not speak from the perspective of {customer_name}.
@@ -79,21 +89,22 @@ def customer_dialog_setup(customer_name, topic, sa_name):
         Please make the topic more specific.
         The topic is based on the customer's problem that you are helping them solve.
         Please reply with the specified topic in {word_limit} words or less.
-        The topic should related to AWS services.
-        Describe the topic by restating it to the customer as if they were asking you about it.
+        The topic should be a business problem that is solvable using AWS services.
+        The topic should include a solution that use to AWS services.
+        Describe the topic by restating it to the customer as if they have just explained their problem to you.
         Speak directly to the customer {customer_name}.
         Do not add anything else."""
                      )
     ]
     specified_topic = ChatOpenAI(temperature=1.0)(
         topic_specifier_prompt).content
-    print(f"Original quest:\n{topic}\n")
-    print(f"Detailed quest:\n{specified_topic}\n")
+    print(f"Original topic:\n{topic}\n")
+    print(f"Detailed topic:\n{specified_topic}\n")
     # Main Loop
     customer = DialogueAgent(name=customer_name,
-                                system_message=customer_system_message,
-                                model=ChatOpenAI(temperature=0.2))
+                             system_message=customer_system_message,
+                             model=ChatOpenAI(temperature=0.2))
     solutions_architect = DialogueAgent(name=sa_name,
-                                system_message=sa_system_message,
-                                model=ChatOpenAI(temperature=0.2))
+                                        system_message=sa_system_message,
+                                        model=ChatOpenAI(temperature=0.2))
     return customer, specified_topic, solutions_architect
