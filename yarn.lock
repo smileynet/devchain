@@ -64,6 +64,11 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
+"@huggingface/inference@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@huggingface/inference/-/inference-2.4.0.tgz#ba9ee00d06fda61213d1ec239c6ee22607f80666"
+  integrity sha512-K/zKJuZyM2bFa9kwSeDRQO3c5YniHTwdsSe7+JO3IE+txBFcQT5s0/SmubnuAdrvefZBX4HgHbbHrV/ub/66AA==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.8.tgz"
@@ -641,6 +646,11 @@ cli-width@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/cli-width/-/cli-width-4.0.0.tgz"
   integrity sha512-ZksGS2xpa/bYkNzN3BAw1wEjsLV/ZKOf/CCrJ/QOBsxx6fOARIkwTutxp1XIOIohi6HKmOFjMoK/XaqDVUpEEw==
+
+cohere-ai@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/cohere-ai/-/cohere-ai-6.2.1.tgz#f483d5d1fb019698ac7de24ef84f79621fe172bc"
+  integrity sha512-um6QaNPrsTZWIf7SIefr3C1Ed2M7HubkcaRZERBLsrvawN1O+ClrGcoEcvdYVBwxQcKwoPr+D3PrDXCfoFQNjQ==
 
 color-convert@^2.0.1:
   version "2.0.1"

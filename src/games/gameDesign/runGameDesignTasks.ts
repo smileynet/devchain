@@ -9,19 +9,29 @@ import {
   GameDevOptions
 } from "@src/games/gameDesign/gameDesignSetup.js";
 import memoryManager from "@src/utils/memoryManager.js";
+import gameMVP from "@src/games/gameDesign/tasks/gameMVP.js";
+import gameStyle from "@src/games/gameDesign/tasks/gameStyle.js";
+import gamePlan from "@src/games/gameDesign/tasks/gamePlan.js";
+import gameMarketing from "@src/games/gameDesign/tasks/gameMarketing.js";
+import gameSales from "@src/games/gameDesign/tasks/gameSales.js";
 
 export const tasks: Record<string, Workflow> = {
   gameDesign: gameDesign,
   gameAnalysis: gameAnalysis,
   gameArt: gameArt,
   gameDevelopment: gameDevelopment,
+  gameMVP: gameMVP,
+  gamePlan: gamePlan,
+  gameStyle: gameStyle,
+  gameMarketing: gameMarketing,
+  gameSales: gameSales
 };
 
 export default async function runGameDesignTasks() {
   const options = await gameDesignSetup(); // Run the setup once at the beginning
   await runTaskChain('gameDesign', gameDesign, options);
 
-  const otherTaskCategories = ['gameAnalysis', 'gameArt', 'gameDevelopment'];
+  const otherTaskCategories = ['gameAnalysis', 'gameArt', 'gameDevelopment', 'gameMVP', 'gamePlan', 'gameStyle', 'gameMarketing', 'gameSales'];
   await Promise.all(
     otherTaskCategories.map((category) =>
       runTaskChain(category, tasks[category], options)

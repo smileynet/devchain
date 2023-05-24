@@ -16,11 +16,13 @@
   "author": "Sam Biggins",
   "license": "ISC",
   "dependencies": {
+    "@huggingface/inference": "^2.4.0",
     "@inquirer/prompts": "^1.0.1",
     "chalk": "^5.2.0",
     "chatgpt-plus-api-client": "^1.2.0",
     "cheerio": "^1.0.0-rc.12",
     "chromadb": "^1.4.1",
+    "cohere-ai": "^6.2.1",
     "dotenv": "^16.0.3",
     "epub2": "^3.0.1",
     "graphql": "^16.6.0",
