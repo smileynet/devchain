@@ -10,7 +10,7 @@ load_dotenv()
 def main():
     customer_name = "Sam"
     solutions_architect_name = "David"
-    topic = "How do I build an analytics pipeline for my online video games?"
+    topic = "How do I move my game servers to AWS Reserved Instances cost effectively?"
     customer, specified_quest, solutions_architect = customer_dialog_setup(
         customer_name,
         topic,
