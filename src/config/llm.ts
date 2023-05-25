@@ -7,18 +7,21 @@ dotenv.config();
 export type LLMModel = OpenAI | Replicate;
 export type ChatLLMModel = ChatOpenAI;
 
-const headers = {
-  "Helicone-Cache-Enabled": "true",
-  "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
-  "Helicone-User-Id": process.env.HELICONE_USER_ID,
-};
+let configuration = undefined;
+if(process.env.USE_HELICONE === "true") {
+  const headers = {
+    "Helicone-Cache-Enabled": "true",
+    "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
+    "Helicone-User-Id": process.env.HELICONE_USER_ID,
+  };
 
-const configuration = {
-  basePath: process.env.HELICONE_API_URL,
-  baseOptions: {
-    headers: headers,
-  },
-};
+  configuration = {
+    basePath: process.env.HELICONE_API_URL,
+    baseOptions: {
+      headers: headers,
+    },
+  };
+}
 
 const temperature = process.env.TEMPERATURE
   ? parseInt(process.env.TEMPERATURE)
