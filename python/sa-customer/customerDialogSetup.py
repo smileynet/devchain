@@ -101,7 +101,6 @@ def customer_dialog_setup(customer_name, topic, sa_name):
     specified_topic = ChatOpenAI(temperature=1.0)(
         topic_specifier_prompt).content
     print(f"Original topic:\n{topic}\n")
-    print(f"Detailed topic:\n{specified_topic}\n")
     # Main Loop
     customer = DialogueAgent(name=customer_name,
                              system_message=customer_system_message,
