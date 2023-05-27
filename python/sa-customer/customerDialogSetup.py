@@ -4,8 +4,8 @@ from langchain.schema import SystemMessage, HumanMessage
 from python.dialogAgent import DialogueAgent
 
 
-def customer_dialog_setup(customer_name, topic, sa_name):
-    word_limit = 200  # word limit for task brainstorming
+def customer_dialog_setup(customer_name: str, topic: str, sa_name: str,
+                          word_limit: int = 200):
     discussion_description = f"""Here is the topic for an AWS architecture discussion: {topic}.
         There is one learner in the discussion: the customer, {customer_name}.
         The conversation is led by a Solutions Architect, {sa_name}."""
