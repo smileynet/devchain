@@ -104,8 +104,8 @@ def customer_dialog_setup(customer_name: str, topic: str, sa_name: str,
     # Main Loop
     customer = DialogueAgent(name=customer_name,
                              system_message=customer_system_message,
-                             model=ChatOpenAI(temperature=0.2))
+                             model=ChatOpenAI(modelName="gpt-3.5-turbo", temperature=0.2))
     solutions_architect = DialogueAgent(name=sa_name,
                                         system_message=sa_system_message,
-                                        model=ChatOpenAI(temperature=0.2))
+                                        model=ChatOpenAI(modelName="gpt-3.5-turbo", temperature=0.2))
     return customer, specified_topic, solutions_architect

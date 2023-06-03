@@ -29,7 +29,7 @@ def main(customer_name: str, solutions_architect_name: str, topic: str,
 
 
 if __name__ == "__main__":
-    customer_name = "Sam"
+    customer_name = "Brian"
     solutions_architect_name = "David"
     topic = "How do I move my game servers to AWS Reserved Instances cost effectively?"
     max_iterations = 8
